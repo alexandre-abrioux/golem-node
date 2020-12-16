@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+
+  node:
+    container_name: ${COMPOSE_PROJECT_NAME}_node
+    image: golem-node/provider:dev
+    build: ./docker
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data-node/ya-provider/:/root/.local/share/ya-provider/
+      - ./data-node/yagna/:/root/.local/share/yagna/
+    devices:
+      - /dev/kvm:/dev/kvm
