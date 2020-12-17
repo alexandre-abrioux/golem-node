@@ -2,7 +2,7 @@
 
 > Project done during the Golem bounty [Run a Provider Node for 14 Days](https://gitcoin.co/issue/golemfactory/yagna/880/100024489).
 > 
-> Restnet Node ID: `0xef72927cde5a9cf2774578050be45c9aaeb4593f`
+> Testnet Node ID: `0xef72927cde5a9cf2774578050be45c9aaeb4593f`
 
 Golem Network: https://golem.network/
 
