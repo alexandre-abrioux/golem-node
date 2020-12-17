@@ -7,9 +7,9 @@ include .env
 help:		## Display this help message
 	@echo -e "$$(grep -hE '^\S+:.*##' $(MAKEFILE_LIST) | sed -e 's/:.*##\s*/:/' -e 's/^\(.\+\):\(.*\)/\\x1b[36m\1\\x1b[m:\2/' | column -c2 -t -s :)"
 
-.PHONY: build
-build: 		## Build the Docker image
-	docker build ./docker
+.PHONY: pull
+pull: 		## Pull the latest image version
+	docker-compose pull
 
 .PHONY: up
 up: 		## Start the node
