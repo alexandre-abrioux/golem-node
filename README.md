@@ -2,7 +2,7 @@
 
 Golem Network: https://golem.network/
 
-Golem Documentation: https://handbook.golem.network/provider-tutorials/provider-tutorial
+Provider Node Documentation: https://handbook.golem.network/provider-tutorials/provider-tutorial
 
 ## Usage
 
