@@ -1,6 +1,6 @@
 #  Golem Provider Node (Docker Version)
 
-> Project submited to the Golem bounty [Run a Provider Node for 14 Days](https://gitcoin.co/issue/golemfactory/yagna/880/100024489).
+> Project submited to the [Run a Provider Node for 14 Days](https://gitcoin.co/issue/golemfactory/yagna/880/100024489) and [Hack New Golem](https://gitcoin.co/issue/golemfactory/hackathons/6/100024411) bounties.
 > 
 > Testnet Node ID: `0xef72927cde5a9cf2774578050be45c9aaeb4593f`
 
