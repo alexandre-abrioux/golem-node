@@ -6,9 +6,9 @@ Provider Node Documentation: https://handbook.golem.network/provider-tutorials/p
 
 ## Usage
 
-You can clone this repository or use the provided `docker/Dockerfile` and `docker-compose.yml` as a template for your node.
+You can clone this repository or use the provided `docker/Dockerfile` and `docker-compose.yml` as a base template for your own setup.
 
-A `Makefile` is provided for convenience, but `make` is not required to run the node.
+A `Makefile` is included for convenience but `make` is not required to run the node.
 
 Use `make` or `make help` to list the available shortcuts.
 
