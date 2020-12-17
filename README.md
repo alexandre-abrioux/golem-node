@@ -8,7 +8,7 @@ A `Makefile` is provided for convenience, but `make` is not required to run the 
 
 Use `make` or `make help` to list the available shortcuts.
 
-### First Start
+### > First Start
 
 Use `make setup` to run the node for the first time.
 
@@ -16,6 +16,12 @@ The CLI will ask you a few questions: refer to [Golem documentation > Initial se
 
 The node settings will be kept on your host in a `./data-node` repository.
 
-### Start the Node
+### > Start the Node
 
 Use `make up` to start the node in detached mode. You can access the logs at all time by running `make logs`.
+
+## Donation :beer:
+
+If you find this template useful you may consider the option of offering me a beer through a donation. Support is very appreciated :slightly_smiling_face:
+
+ETH: `0x18f199E8DAb38257ca84D4858FF6F73De1A697eA`
