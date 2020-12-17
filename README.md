@@ -1,5 +1,9 @@
 #  Golem Provider Node (Docker Version)
 
+> Project done during the Golem bounty [Run a Provider Node for 14 Days](https://gitcoin.co/issue/golemfactory/yagna/880/100024489).
+> 
+> Restnet Node ID: `0xef72927cde5a9cf2774578050be45c9aaeb4593f`
+
 Golem Network: https://golem.network/
 
 Provider Node Documentation: https://handbook.golem.network/provider-tutorials/provider-tutorial
@@ -28,4 +32,4 @@ Use `make up` to start the node in detached mode. You can access the logs at all
 
 If you find this template useful you may consider the option of offering me a beer through a donation. Support is very appreciated :slightly_smiling_face:
 
-ETH: `0x18f199E8DAb38257ca84D4858FF6F73De1A697eA`
+ETH/ERC20: `0x18f199E8DAb38257ca84D4858FF6F73De1A697eA`
