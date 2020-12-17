@@ -4,8 +4,7 @@ services:
 
   node:
     container_name: ${COMPOSE_PROJECT_NAME}_node
-    image: golem-node/provider:dev
-    build: ./docker
+    image: aabrioux/golem-node:latest
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
