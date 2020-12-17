@@ -1,8 +1,12 @@
-#  Dockerized Golem Network Provider Node 
+#  Golem Provider Node (Docker Version)
 
-You can clone this repository of use the provided `docker/Dockerfile` and `docker-compose.yml` as a template for your node.
+Golem Network: https://golem.network/
+
+Golem Documentation: https://handbook.golem.network/provider-tutorials/provider-tutorial
 
 ## Usage
+
+You can clone this repository or use the provided `docker/Dockerfile` and `docker-compose.yml` as a template for your node.
 
 A `Makefile` is provided for convenience, but `make` is not required to run the node.
 
