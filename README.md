@@ -37,7 +37,7 @@ The node settings will be kept on your host in a `./data-node` repository.
 
 ### 2. Run the Node
 
-Use `make up` to start the node in detached mode.
+Use `make up` to start the node in a detached mode.
 
 You can access the logs at all time by running `make logs`.
 
