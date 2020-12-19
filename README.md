@@ -17,7 +17,9 @@ As per the [Provider Node Documentation > Prerequisites](https://handbook.golem.
 
 > To run Golem Sneak Peek you'll need a physical machine as you may encounter issues when running it on a virtual machine.
 
-Your Docker host must be a physical machine. Furthermore you will need to give the container access to the `/dev/kvm` device.
+Your Docker host must be a physical machine: you will need to give the container access to the `/dev/kvm` device.
+
+Furthermore, Golem only supports 64-bit architecture for the moment (see [GolemFactory/Yagna Release Page](https://github.com/golemfactory/yagna/releases)).
 
 ## :arrow_forward: Usage
 
