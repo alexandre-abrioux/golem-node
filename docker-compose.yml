@@ -14,5 +14,5 @@ services:
       - /dev/kvm:/dev/kvm
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.datecron.schedule: "@daily"
-      ofelia.job-exec.datecron.command: "find /root/.local/share/ya-provider/exe-unit/cache/ -mtime +7 -type f -exec rm {} +"
+      ofelia.job-exec.golem-clean.schedule: "@daily"
+      ofelia.job-exec.golem-clean.command: "find /root/.local/share/ya-provider/exe-unit/cache/ -mtime +7 -type f -exec rm {} +"
