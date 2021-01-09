@@ -45,6 +45,19 @@ You can access the logs at any time by running `make logs`.
 
 Use `make status` to get your node address and health.
 
+## :dash: Maintenance
+
+The node caches every docker image it uses to run jobs in the following directory:
+`./data-node/ya-provider/exe-unit/cache/`.
+Those images are never removed and can slowly take up a lot of space on your hard drive.
+
+To prevent this a helper command has been introduced: `make clean` ;
+which removes every file older than 7 days in the cache directory.
+
+If you are running the job scheduler for docker environments [Ofelia](https://github.com/mcuadros/ofelia) on your host
+this task will be done automatically, every day at midnight,
+thanks to specific labels added on the `node` service.
+
 ## Donation :beer:
 
 If you find this template useful you may consider the option of offering me a beer through a donation. Support is very appreciated :slightly_smiling_face:

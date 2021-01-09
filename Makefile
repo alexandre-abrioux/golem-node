@@ -42,3 +42,7 @@ setup: 		## Setup the node for the first time
 .PHONY: status
 status: 	## Get the running node status
 	docker-compose exec node golemsp status
+
+.PHONY: clean
+clean:		## Remove cached files older than 7 days
+	docker-compose exec node find /root/.local/share/ya-provider/exe-unit/cache/ -mtime +7 -type f -exec rm {} +
