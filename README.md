@@ -1,8 +1,8 @@
 #  Golem Provider Node :whale: Docker Image
 
-> Project submited to the [Run a Provider Node for 14 Days](https://gitcoin.co/issue/golemfactory/yagna/880/100024489) and [Hack New Golem](https://gitcoin.co/issue/golemfactory/hackathons/6/100024411) bounties.
-> 
-> Testnet Node ID: `0xef72927cde5a9cf2774578050be45c9aaeb4593f`
+> Project won one of the four prizes allocated by the Golem Project on Gitcoin's [Hack New Golem](https://gitcoin.co/issue/golemfactory/hackathons/6/100024411) bounty!
+>
+> Read more on the [Golem's Blog article](https://blog.golemproject.net/meet-the-winners-golem-gitcoin-hackathon-2020/).
 
 ## :link: Links
 
