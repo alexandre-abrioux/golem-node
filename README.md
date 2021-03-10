@@ -29,15 +29,16 @@ A `Makefile` is included for convenience but `make` is not required to run the n
 
 Use `make` or `make help` to list the available shortcuts.
 
-### 1. Environment variables
+### 1. Environment Set Up
 
-Create an empty `.env.local` file in order to add your ERC20 **PUBLIC address** as an environment variable:
+Create an empty `.env.local` file in order to add your ERC20 address as an environment variable
+(replace the following placeholder with your own **PUBLIC** address):
 ```bash
 echo "YA_ACCOUNT=0x18f199E8DAb38257ca84D4858FF6F73De1A697eA" >> .env.local
 ```
 This is important because it will be the address where your earned GLM will be sent.
 
-You can use for instance you Metamask or Ledger public address.
+You can use for instance your Metamask or Ledger public address.
 This way, you can have your earned GLM tokens sent directly to your account,
 and you can manage them from there without Golem ever needing to access your wallet.
 
