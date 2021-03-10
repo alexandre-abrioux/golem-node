@@ -62,9 +62,11 @@ The node settings will be kept on your host in a `./data-node` repository.
 
 Use `make up` to start the node in a detached mode.
 
-You can access the logs at any time by running `make logs`.
+Display the last logs at any time by running `make logs`.
 
-Use `make status` to get your node address and health.
+Use `make status` to get your node address and health, and `make settings` to display your current node parameters.
+
+Get a shell access to your running container with `make shell`.
 
 ## :dash: Maintenance
 
