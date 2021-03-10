@@ -31,7 +31,7 @@ Use `make` or `make help` to list the available shortcuts.
 
 ### 1. Environment Set Up
 
-Create an empty `.env.local` file in order to add your ERC20 address as an environment variable
+Create a `.env.local` file in order to add your ERC20 address as an environment variable
 (replace the following placeholder with your own **PUBLIC** address):
 ```bash
 echo "YA_ACCOUNT=0x18f199E8DAb38257ca84D4858FF6F73De1A697eA" >> .env.local
