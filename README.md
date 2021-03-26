@@ -10,6 +10,7 @@
 - [DockerHub Respository](https://hub.docker.com/r/aabrioux/golem-node)
 - [Golem Network > Website](https://golem.network/)
 - [Golem Network > Provider Node Documentation](https://handbook.golem.network/provider-tutorials/provider-tutorial)
+- [Golem Network > Yagna Github Repository](https://github.com/golemfactory/yagna)
 
 ## :information_source: Prerequisites (important)
 
