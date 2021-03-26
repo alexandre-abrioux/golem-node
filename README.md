@@ -59,7 +59,7 @@ After the node has started, typically when you see logs that are similar to the 
 
 The node settings will be kept on your host in a `./data-node` repository.
 
-### 2. Run the Node
+### 3. Run the Node
 
 Use `make up` to start the node in a detached mode.
 
