@@ -12,6 +12,9 @@ services:
       - ./data-node/yagna/:/root/.local/share/yagna/
     devices:
       - /dev/kvm:/dev/kvm
+    environment:
+      - YA_PAYMENT_NETWORK=${YA_PAYMENT_NETWORK}
+      - YA_ACCOUNT=${YA_ACCOUNT}
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.golem-clean.schedule: "@daily"

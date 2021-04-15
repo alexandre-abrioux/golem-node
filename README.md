@@ -10,6 +10,7 @@
 - [DockerHub Respository](https://hub.docker.com/r/aabrioux/golem-node)
 - [Golem Network > Website](https://golem.network/)
 - [Golem Network > Provider Node Documentation](https://handbook.golem.network/provider-tutorials/provider-tutorial)
+- [Golem Network > Yagna Github Repository](https://github.com/golemfactory/yagna)
 
 ## :information_source: Prerequisites (important)
 
@@ -29,21 +30,44 @@ A `Makefile` is included for convenience but `make` is not required to run the n
 
 Use `make` or `make help` to list the available shortcuts.
 
-### 1. First Start
+### 1. Environment Set Up
+
+Create a `.env.local` file in order to add your ERC20 address as an environment variable
+(replace the following placeholder with your own **PUBLIC** address):
+```bash
+echo "YA_ACCOUNT=0x18f199E8DAb38257ca84D4858FF6F73De1A697eA" >> .env.local
+```
+This is important because it will be the address where your earned GLM will be sent.
+
+You can use for instance your Metamask or Ledger public address.
+This way, you can have your earned GLM tokens sent directly to your account,
+and you can manage them from there without Golem ever needing to access your wallet.
+
+### 2. First Start
 
 Use `make setup` to run the node for the first time.
 
 The CLI will ask you a few questions: refer to the [Provider Node Documentation > Initial Setup](https://handbook.golem.network/provider-tutorials/provider-tutorial#initial-setup) for more details.
 
+After the node has started, typically when you see logs that are similar to the followings, you can exit the program with `CTRL+C`:
+```
+[INFO  ya_market::matcher] Subscribed new Offer: [...] using identity: golem-cli [...]
+[INFO  ya_provider::market::provider_market] Subscribed offer. Subscription id [...], preset [wasmtime].
+[INFO  ya_payment::service::local] get status: GetStatus { address: "...", driver: "zksync", network: Some("mainnet"), token: None }
+[INFO  ya_payment::service::local] get status: GetStatus { address: "...", driver: "erc20", network: Some("mainnet"), token: None }
+```
+
 The node settings will be kept on your host in a `./data-node` repository.
 
-### 2. Run the Node
+### 3. Run the Node
 
 Use `make up` to start the node in a detached mode.
 
-You can access the logs at any time by running `make logs`.
+Display the last logs at any time by running `make logs`.
 
-Use `make status` to get your node address and health.
+Use `make status` to get your node address and health, and `make settings` to display your current node parameters.
+
+Get a shell access to your running container with `make shell`.
 
 ## :dash: Maintenance
 
