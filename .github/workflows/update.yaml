@@ -23,3 +23,4 @@ jobs:
           title: "chore: upgrade Yagna to v${{ env.YA_INSTALLER_CORE }}"
           branch: patch/yagna-${{ env.YA_INSTALLER_CORE }}
           reviewers:  ${{ github.repository_owner }}
+          delete-branch: true
