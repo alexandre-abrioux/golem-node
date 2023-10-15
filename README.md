@@ -49,14 +49,6 @@ Use `make setup` to run the node for the first time.
 
 The CLI will ask you a few questions: refer to the [Provider Node Documentation > Initial Setup](https://handbook.golem.network/provider-tutorials/provider-tutorial#initial-setup) for more details.
 
-After the node has started, typically when you see logs that are similar to the followings, you can exit the program with `CTRL+C`:
-```
-[INFO  ya_market::matcher] Subscribed new Offer: [...] using identity: golem-cli [...]
-[INFO  ya_provider::market::provider_market] Subscribed offer. Subscription id [...], preset [wasmtime].
-[INFO  ya_payment::service::local] get status: GetStatus { address: "...", driver: "zksync", network: Some("mainnet"), token: None }
-[INFO  ya_payment::service::local] get status: GetStatus { address: "...", driver: "erc20", network: Some("mainnet"), token: None }
-```
-
 The node settings will be kept on your host in a `./data-node` repository.
 
 ### 3. Run the Node
@@ -67,7 +59,7 @@ Display the last logs at any time by running `make logs`.
 
 Use `make status` to get your node address and health, and `make settings` to display your current node parameters.
 
-Get a shell access to your running container with `make shell`.
+Get shell access with `make shell`.
 
 ## :dash: Maintenance
 
