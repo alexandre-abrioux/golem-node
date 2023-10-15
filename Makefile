@@ -37,6 +37,10 @@ shell: 			## Enter the container shell
 logs: 			## Display the container logs
 	docker-compose logs -t --tail=10 -f node
 
+.PHONY: config
+config: 		## Node config
+	docker-compose run --rm node golemsp setup
+
 .PHONY: setup
 setup: 			## Setup the node for the first time
 	docker-compose run --rm node golemsp run

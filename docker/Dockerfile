@@ -2,7 +2,7 @@ ARG UBUNTU_VERSION=20.04
 ARG YA_CORE_VERSION=0.12.3
 ARG YA_WASI_VERSION=0.2.2
 ARG YA_VM_VERSION=0.3.0
-ARG YA_RESOURCES_VERSION=0.1.9
+ARG YA_RESOURCES_VERSION=0.1.8
 ARG YA_DIR_BIN=/usr/bin/
 ARG YA_DIR_PLUGINS=/lib/yagna/plugins/
 ARG YA_DIR_RESOURCES=/usr/lib/yagna/installer/
@@ -65,7 +65,6 @@ RUN apt-get update -q \
 COPY --from=installer /root/golem-setup/plugins/ ${YA_DIR_PLUGINS}
 COPY --from=installer /root/golem-setup/bin/ ${YA_DIR_BIN}
 COPY --from=installer /root/golem-setup/resources/ ${YA_DIR_RESOURCES}
-RUN golemsp manifest-bundle add ${YA_DIR_RESOURCES}
 
 CMD ["golemsp", "run"]
 VOLUME ["/root/.local/share/ya-provider/", "/root/.local/share/yagna/"]
