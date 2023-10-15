@@ -51,7 +51,8 @@ RUN find downloads/golem-provider-linux/golem-provider-linux-v${YA_CORE_VERSION}
 && cp -R downloads/golem-provider-linux/golem-provider-linux-v${YA_CORE_VERSION}/plugins/* plugins \
 && cp -R downloads/ya-runtime-wasi-linux/ya-runtime-wasi-linux-v${YA_WASI_VERSION}/* plugins \
 && cp -R downloads/ya-runtime-vm-linux/ya-runtime-vm-linux-v${YA_VM_VERSION}/* plugins \
-&& cp -R downloads/ya-runtime-vm-linux/ya-runtime-vm-linux-v${YA_VM_VERSION}/* plugins
+&& cp -R downloads/ya-runtime-vm-linux/ya-runtime-vm-linux-v${YA_VM_VERSION}/* plugins \
+&& cp -R downloads/ya-resources/* resources
 
 FROM ubuntu:${UBUNTU_VERSION}
 ARG YA_DIR_BIN
@@ -63,6 +64,8 @@ RUN apt-get update -q \
 && rm -rf /var/lib/apt/lists/*
 COPY --from=installer /root/golem-setup/plugins/ ${YA_DIR_PLUGINS}
 COPY --from=installer /root/golem-setup/bin/ ${YA_DIR_BIN}
+COPY --from=installer /root/golem-setup/resources/ ${YA_DIR_RESOURCES}
+RUN golemsp manifest-bundle add ${YA_DIR_RESOURCES}
 
 CMD ["golemsp", "run"]
 VOLUME ["/root/.local/share/ya-provider/", "/root/.local/share/yagna/"]
