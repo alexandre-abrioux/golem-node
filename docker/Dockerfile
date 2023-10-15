@@ -67,7 +67,7 @@ COPY --from=installer /root/golem-setup/plugins/ ${YA_DIR_PLUGINS}
 COPY --from=installer /root/golem-setup/bin/ ${YA_DIR_BIN}
 COPY --from=installer /root/golem-setup/resources/ ${YA_DIR_RESOURCES}
 
-CMD ["run.sh"]
+CMD ["/run.sh"]
 VOLUME ["/root/.local/share/ya-provider/", "/root/.local/share/yagna/"]
 HEALTHCHECK \
     --interval=1m \
