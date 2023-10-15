@@ -12,7 +12,7 @@ jobs:
       changes: ${{ steps.check-changes.changes }}
     steps:
       - uses: actions/checkout@v2
-      - uses: ./github/update-versions
+      - uses: ./github/actions/update-versions
       - run: rm install.sh
       - id: check-changes
         run:  echo "changes=$(git status --short | wc -l)" >> "$GITHUB_OUTPUT"
@@ -24,7 +24,7 @@ jobs:
     if: needs.check-update.outputs.changes != '0'
     steps:
       - uses: actions/checkout@v2
-      - uses: ./github/update-versions
+      - uses: ./github/actions/update-versions
       - run: |
           YA_RESOURCES_VERSION=$(curl -s https://api.github.com/repos/golemfactory/ya-installer-resources/releases/latest | jq .name | sed s/v//)
           sed -i -E 's/(ARG YA_RESOURCES_VERSION=)\S+/\1${YA_RESOURCES_VERSION}/' docker/Dockerfile
