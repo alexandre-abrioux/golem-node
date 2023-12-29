@@ -32,6 +32,6 @@ jobs:
         with:
           commit-message: "chore: upgrade Yagna to v${{ steps.update-versions.outputs.version }}"
           title: "chore: upgrade Yagna to v${{ steps.update-versions.outputs.version }}"
-          branch: patch/yagna-${{ env.YA_INSTALLER_CORE }}
+          branch: patch/yagna-${{ steps.update-versions.outputs.version }}
           reviewers:  ${{ github.repository_owner }}
           delete-branch: true
