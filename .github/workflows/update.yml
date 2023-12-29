@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/update-versions
       - id: check-changes
-        run:  echo "changes=$(git status --short | wc -l)" >> "$GITHUB_OUTPUT"
+        run: echo "changes=$(git status --short | wc -l)" >> "$GITHUB_OUTPUT"
 
   create-pr:
     runs-on: ubuntu-latest
@@ -23,14 +23,15 @@ jobs:
     if: needs.check-update.outputs.changes != '0'
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/update-versions
+      - id: update-versions
+        uses: ./.github/actions/update-versions
       - run: |
           YA_RESOURCES_VERSION=$(curl -s https://api.github.com/repos/golemfactory/ya-installer-resources/releases/latest | jq -r .name | sed s/v//)
           sed -i -E "s/(ARG YA_RESOURCES_VERSION=)\S+/\1${YA_RESOURCES_VERSION}/" docker/Dockerfile
       - uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "chore: upgrade Yagna to v${{ env.YA_INSTALLER_CORE }}"
-          title: "chore: upgrade Yagna to v${{ env.YA_INSTALLER_CORE }}"
+          commit-message: "chore: upgrade Yagna to v${{ steps.update-versions.outputs.version }}"
+          title: "chore: upgrade Yagna to v${{ steps.update-versions.outputs.version }}"
           branch: patch/yagna-${{ env.YA_INSTALLER_CORE }}
           reviewers:  ${{ github.repository_owner }}
           delete-branch: true

@@ -13,3 +13,4 @@ runs:
         sed -i -E "s/(ARG YA_WASI_VERSION=)\S+/\1${YA_WASI_VERSION}/" docker/Dockerfile
         sed -i -E "s/(ARG YA_VM_VERSION=)\S+/\1${YA_VM_VERSION}/" docker/Dockerfile
         rm install.sh
+        echo "version=${YA_CORE_VERSION}" >> "$GITHUB_OUTPUT"
