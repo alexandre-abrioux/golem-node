@@ -1,9 +1,17 @@
 name: update
 description: Check for new versions of Yagna
+outputs:
+  version:
+    description: "The new Yagna version"
+    value: ${{ steps.changes.outputs.version }}
+  changes:
+    description: "The number of changes in the Dockerfile after updating the version"
+    value: ${{ steps.changes.outputs.changes }}
 runs:
   using: composite
   steps:
     - shell: sh
+      id: changes
       run: |
         curl -sS https://join.golem.network/as-provider > install.sh
         YA_CORE_VERSION=$(cat install.sh | sed -nE 's/^.*YA_INSTALLER_CORE="?\$\{YA_INSTALLER_CORE:-v([^}]+)\}"?.*$/\1/p')
@@ -14,3 +22,4 @@ runs:
         sed -i -E "s/(ARG YA_VM_VERSION=)\S+/\1${YA_VM_VERSION}/" docker/Dockerfile
         rm install.sh
         echo "version=${YA_CORE_VERSION}" >> "$GITHUB_OUTPUT"
+        echo "changes=$(git status --short | wc -l)" >> "$GITHUB_OUTPUT"
