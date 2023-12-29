@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/update-versions
-      - run: rm install.sh
       - id: check-changes
         run:  echo "changes=$(git status --short | wc -l)" >> "$GITHUB_OUTPUT"
 
@@ -27,8 +26,7 @@ jobs:
       - uses: ./.github/actions/update-versions
       - run: |
           YA_RESOURCES_VERSION=$(curl -s https://api.github.com/repos/golemfactory/ya-installer-resources/releases/latest | jq .name | sed s/v//)
-          sed -i -E 's/(ARG YA_RESOURCES_VERSION=)\S+/\1${YA_RESOURCES_VERSION}/' docker/Dockerfile
-      - run: rm install.sh
+          sed -i -E "s/(ARG YA_RESOURCES_VERSION=)\S+/\1${YA_RESOURCES_VERSION}/" docker/Dockerfile
       - uses: peter-evans/create-pull-request@v3
         with:
           commit-message: "chore: upgrade Yagna to v${{ env.YA_INSTALLER_CORE }}"
