@@ -9,7 +9,7 @@ jobs:
   check-update:
     runs-on: ubuntu-latest
     outputs:
-      changes: ${{ steps.check-changes.changes }}
+      changes: ${{ steps.check-changes.outputs.changes }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/update-versions
