@@ -1,16 +1,22 @@
 ARG UBUNTU_VERSION=20.04
 ARG YA_CORE_VERSION=0.15.2
+ARG YA_CORE_ARCH=linux
 ARG YA_WASI_VERSION=0.2.2
+ARG YA_WASI_ARCH=linux
 ARG YA_VM_VERSION=0.3.0
+ARG YA_VM_ARCH=linux
 ARG YA_RESOURCES_VERSION=0.1.19
 ARG YA_DIR_BIN=/usr/bin/
 ARG YA_DIR_PLUGINS=/lib/yagna/plugins/
 ARG YA_DIR_RESOURCES=/usr/lib/yagna/installer/
 
-FROM ubuntu:${UBUNTU_VERSION} as installer
+FROM ubuntu:${UBUNTU_VERSION} AS installer
 ARG YA_CORE_VERSION
+ARG YA_CORE_ARCH
 ARG YA_WASI_VERSION
+ARG YA_WASI_ARCH
 ARG YA_VM_VERSION
+ARG YA_VM_ARCH
 ARG YA_RESOURCES_VERSION
 WORKDIR /root/golem-setup
 RUN apt-get update -q \
@@ -23,30 +29,29 @@ RUN apt-get update -q \
 && mkdir plugins \
 && mkdir resources \
 && curl --proto "=https" --silent --show-error \
-    --location "https://github.com/golemfactory/yagna/releases/download/v${YA_CORE_VERSION}/golem-provider-linux-v${YA_CORE_VERSION}.tar.gz" \
-    --output "downloads/golem-provider-linux.tar.gz" \
+    --location "https://github.com/golemfactory/yagna/releases/download/v${YA_CORE_VERSION}/golem-provider-${YA_CORE_ARCH}-v${YA_CORE_VERSION}.tar.gz" \
+    --output "downloads/golem-provider.tar.gz" \
 && curl --proto "=https" --silent --show-error \
-    --location "https://github.com/golemfactory/ya-runtime-wasi/releases/download/v${YA_WASI_VERSION}/ya-runtime-wasi-linux-v${YA_WASI_VERSION}.tar.gz" \
-    --output "downloads/ya-runtime-wasi-linux.tar.gz" \
+    --location "https://github.com/golemfactory/ya-runtime-wasi/releases/download/v${YA_WASI_VERSION}/ya-runtime-wasi-${YA_WASI_ARCH}-v${YA_WASI_VERSION}.tar.gz" \
+    --output "downloads/ya-runtime-wasi.tar.gz" \
 && curl --proto "=https" --silent --show-error \
-    --location "https://github.com/golemfactory/ya-runtime-vm/releases/download/v${YA_VM_VERSION}/ya-runtime-vm-linux-v${YA_VM_VERSION}.tar.gz" \
-    --output "downloads/ya-runtime-vm-linux.tar.gz" \
+    --location "https://github.com/golemfactory/ya-runtime-vm/releases/download/v${YA_VM_VERSION}/ya-runtime-vm-${YA_VM_ARCH}-v${YA_VM_VERSION}.tar.gz" \
+    --output "downloads/ya-runtime-vm.tar.gz" \
 && curl --proto "=https" --silent --show-error \
     --location "https://github.com/golemfactory/ya-installer-resources/releases/download/v${YA_RESOURCES_VERSION}/resources.tar.gz" \
     --output "downloads/ya-resources.tar.gz" \
-&& mkdir downloads/golem-provider-linux \
-&& mkdir downloads/ya-runtime-wasi-linux \
-&& mkdir downloads/ya-runtime-vm-linux \
+&& mkdir downloads/golem-provider \
+&& mkdir downloads/ya-runtime-wasi \
+&& mkdir downloads/ya-runtime-vm \
 && mkdir downloads/ya-resources \
-&& tar -zxvf downloads/golem-provider-linux.tar.gz -C downloads/golem-provider-linux \
-&& tar -zxvf downloads/ya-runtime-wasi-linux.tar.gz -C downloads/ya-runtime-wasi-linux \
-&& tar -zxvf downloads/ya-runtime-vm-linux.tar.gz -C downloads/ya-runtime-vm-linux \
+&& tar -zxvf downloads/golem-provider.tar.gz -C downloads/golem-provider \
+&& tar -zxvf downloads/ya-runtime-wasi.tar.gz -C downloads/ya-runtime-wasi \
+&& tar -zxvf downloads/ya-runtime-vm.tar.gz -C downloads/ya-runtime-vm \
 && tar -zxvf downloads/ya-resources.tar.gz -C downloads/ya-resources \
-&& find downloads/golem-provider-linux/golem-provider-linux-v${YA_CORE_VERSION} -executable -type f -exec cp -t bin {} + \
-&& cp -R downloads/golem-provider-linux/golem-provider-linux-v${YA_CORE_VERSION}/plugins/* plugins \
-&& cp -R downloads/ya-runtime-wasi-linux/ya-runtime-wasi-linux-v${YA_WASI_VERSION}/* plugins \
-&& cp -R downloads/ya-runtime-vm-linux/ya-runtime-vm-linux-v${YA_VM_VERSION}/* plugins \
-&& cp -R downloads/ya-runtime-vm-linux/ya-runtime-vm-linux-v${YA_VM_VERSION}/* plugins \
+&& find downloads/golem-provider/golem-provider-${YA_CORE_ARCH}-v${YA_CORE_VERSION} -executable -type f -exec cp -t bin {} + \
+&& cp -R downloads/golem-provider/golem-provider-${YA_CORE_ARCH}-v${YA_CORE_VERSION}/plugins/* plugins \
+&& cp -R downloads/ya-runtime-wasi/ya-runtime-wasi-${YA_WASI_ARCH}-v${YA_WASI_VERSION}/* plugins \
+&& cp -R downloads/ya-runtime-vm/ya-runtime-vm-${YA_VM_ARCH}-v${YA_VM_VERSION}/* plugins \
 && cp -R downloads/ya-resources/* resources
 
 FROM ubuntu:${UBUNTU_VERSION}
