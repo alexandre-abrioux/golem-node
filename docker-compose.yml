@@ -2,7 +2,7 @@ services:
 
   node:
     container_name: ${COMPOSE_PROJECT_NAME}_node
-    image: aabrioux/golem-node:latest
+    image: aabrioux/golem-node:${DOCKER_IMAGE_TAG}
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
