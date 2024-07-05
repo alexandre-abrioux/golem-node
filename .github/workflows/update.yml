@@ -17,7 +17,7 @@ jobs:
           YA_RESOURCES_VERSION=$(curl -s https://api.github.com/repos/golemfactory/ya-installer-resources/releases/latest | jq -r .name | sed s/v//)
           sed -i -E "s/(ARG YA_RESOURCES_VERSION=)\S+/\1${YA_RESOURCES_VERSION}/" docker/Dockerfile
       - if: steps.update-versions.outputs.changes != '0'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "chore: upgrade Yagna to v${{ steps.update-versions.outputs.version }}"
           title: "chore: upgrade Yagna to v${{ steps.update-versions.outputs.version }}"
