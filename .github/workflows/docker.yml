@@ -53,5 +53,5 @@ jobs:
             ./docker-bake.hcl
             ${{ steps.meta.outputs.bake-file }}
           set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+            *.cache-from=type=registry,ref=${{ env.DOCKERHUB_REPO }}:buildcache
+            *.cache-to=type=registry,ref=${{ env.DOCKERHUB_REPO }}:buildcache,mode=max
