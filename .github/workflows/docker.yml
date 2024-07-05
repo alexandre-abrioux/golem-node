@@ -7,6 +7,10 @@ on:
     tags:
       - 'v*'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -42,7 +46,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5
         with:
           push: ${{ github.event_name != 'pull_request' }}
           files: |
