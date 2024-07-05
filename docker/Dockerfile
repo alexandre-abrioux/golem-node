@@ -1,4 +1,3 @@
-ARG UBUNTU_VERSION=24.04
 ARG YA_CORE_VERSION=0.15.2
 ARG YA_CORE_ARCH=linux
 ARG YA_WASI_VERSION=0.2.2
@@ -10,7 +9,22 @@ ARG YA_DIR_BIN=/usr/bin/
 ARG YA_DIR_PLUGINS=/lib/yagna/plugins/
 ARG YA_DIR_RESOURCES=/usr/lib/yagna/installer/
 
-FROM ubuntu:${UBUNTU_VERSION} AS installer
+FROM ubuntu:24.04 AS base
+RUN apt-get update -q \
+&& apt-get install -q -y --no-install-recommends \
+    ca-certificates \
+&& apt-get clean -y \
+&& rm -rf /var/lib/apt/lists/*
+
+FROM base AS downloader
+RUN apt-get update -q \
+&& apt-get install -q -y --no-install-recommends \
+    curl \
+    xz-utils \
+&& apt-get clean -y \
+&& rm -rf /var/lib/apt/lists/*
+
+FROM downloader AS installer
 ARG YA_CORE_VERSION
 ARG YA_CORE_ARCH
 ARG YA_WASI_VERSION
@@ -19,12 +33,7 @@ ARG YA_VM_VERSION
 ARG YA_VM_ARCH
 ARG YA_RESOURCES_VERSION
 WORKDIR /root/golem-setup
-RUN apt-get update -q \
-&& apt-get install -q -y --no-install-recommends \
-    curl \
-    ca-certificates \
-    xz-utils \
-&& mkdir bin \
+RUN mkdir bin \
 && mkdir downloads \
 && mkdir plugins \
 && mkdir resources \
@@ -54,19 +63,14 @@ RUN apt-get update -q \
 && cp -R downloads/ya-runtime-vm/ya-runtime-vm-${YA_VM_ARCH}-v${YA_VM_VERSION}/* plugins \
 && cp -R downloads/ya-resources/* resources
 
-FROM ubuntu:${UBUNTU_VERSION}
+FROM base
 ARG YA_DIR_BIN
 ARG YA_DIR_PLUGINS
 ARG YA_DIR_RESOURCES
-RUN apt-get update -q \
-&& apt-get install -q -y --no-install-recommends ca-certificates \
-&& apt-get clean -y \
-&& rm -rf /var/lib/apt/lists/*
 COPY run.sh /
 COPY --from=installer /root/golem-setup/plugins/ ${YA_DIR_PLUGINS}
 COPY --from=installer /root/golem-setup/bin/ ${YA_DIR_BIN}
 COPY --from=installer /root/golem-setup/resources/ ${YA_DIR_RESOURCES}
-
 CMD ["/run.sh"]
 VOLUME ["/root/.local/share/ya-provider/", "/root/.local/share/yagna/"]
 HEALTHCHECK \
