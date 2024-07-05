@@ -10,5 +10,5 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[*.{json,yml,yaml}]
+[*.{json,yml,yaml,hcl}]
 indent_size = 2

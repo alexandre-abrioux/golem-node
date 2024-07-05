@@ -21,6 +21,7 @@ As per the [Provider Node Documentation > Prerequisites](https://handbook.golem.
 Your Docker host must be a physical machine: you will need to give the container access to the `/dev/kvm` device.
 
 Furthermore, Golem only supports 64-bit architecture for the moment (see [GolemFactory/Yagna Releases Page](https://github.com/golemfactory/yagna/releases)).
+Support for aarch64 (arm64) is in beta.
 
 ## :arrow_forward: Usage
 

@@ -37,11 +37,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v2
+      - name: Build and push
+        uses: docker/bake-action@v4
         with:
-          context: docker
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          files: |
+            ./docker-bake.hcl
+            ${{ steps.meta.outputs.bake-file }}
