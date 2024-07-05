@@ -52,3 +52,6 @@ jobs:
           files: |
             ./docker-bake.hcl
             ${{ steps.meta.outputs.bake-file }}
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
