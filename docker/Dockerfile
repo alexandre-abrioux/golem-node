@@ -1,14 +1,3 @@
-ARG YA_CORE_VERSION=0.15.2
-ARG YA_CORE_ARCH=linux
-ARG YA_WASI_VERSION=0.2.2
-ARG YA_WASI_ARCH=linux
-ARG YA_VM_VERSION=0.3.0
-ARG YA_VM_ARCH=linux
-ARG YA_RESOURCES_VERSION=0.1.19
-ARG YA_DIR_BIN=/usr/bin/
-ARG YA_DIR_PLUGINS=/lib/yagna/plugins/
-ARG YA_DIR_RESOURCES=/usr/lib/yagna/installer/
-
 FROM ubuntu:24.04 AS base
 RUN apt-get update -q \
 && apt-get install -q -y --no-install-recommends \
@@ -25,15 +14,17 @@ RUN apt-get update -q \
 && rm -rf /var/lib/apt/lists/*
 
 FROM downloader AS installer
-ARG YA_CORE_VERSION
+ARG TARGETPLATFORM
+ARG YA_CORE_VERSION=0.15.2
 ARG YA_CORE_ARCH
-ARG YA_WASI_VERSION
-ARG YA_WASI_ARCH
-ARG YA_VM_VERSION
-ARG YA_VM_ARCH
-ARG YA_RESOURCES_VERSION
+ARG YA_WASI_VERSION=0.2.2
+ARG YA_WASI_ARCH=linux
+ARG YA_VM_VERSION=0.3.0
+ARG YA_VM_ARCH=linux
+ARG YA_RESOURCES_VERSION=0.1.19
 WORKDIR /root/golem-setup
-RUN mkdir bin \
+RUN YA_CORE_ARCH=${YA_CORE_ARCH:-$(if [ ${TARGETPLATFORM} = "linux/arm64" ]; then echo "linux_aarch64"; else echo "linux"; fi)} \
+&& mkdir bin \
 && mkdir downloads \
 && mkdir plugins \
 && mkdir resources \
@@ -64,13 +55,10 @@ RUN mkdir bin \
 && cp -R downloads/ya-resources/* resources
 
 FROM base
-ARG YA_DIR_BIN
-ARG YA_DIR_PLUGINS
-ARG YA_DIR_RESOURCES
 COPY run.sh /
-COPY --from=installer /root/golem-setup/plugins/ ${YA_DIR_PLUGINS}
-COPY --from=installer /root/golem-setup/bin/ ${YA_DIR_BIN}
-COPY --from=installer /root/golem-setup/resources/ ${YA_DIR_RESOURCES}
+COPY --from=installer /root/golem-setup/plugins/ /lib/yagna/plugins/
+COPY --from=installer /root/golem-setup/bin/ /usr/bin/
+COPY --from=installer /root/golem-setup/resources/ /usr/lib/yagna/installer/
 CMD ["/run.sh"]
 VOLUME ["/root/.local/share/ya-provider/", "/root/.local/share/yagna/"]
 HEALTHCHECK \

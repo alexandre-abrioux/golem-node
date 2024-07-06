@@ -7,25 +7,26 @@ target "docker-metadata-action" {
   tags = ["${DEFAULT_TAG}"]
 }
 
-target "base" {
-  inherits  = ["docker-metadata-action"]
+// Default target if none specified
+group "default" {
+  targets = ["image-local"]
+}
+
+target "image" {
+  inherits   = ["docker-metadata-action"]
   context    = "docker"
   dockerfile = "Dockerfile"
 }
 
-target "amd64" {
-  inherits  = ["base"]
-  platforms = ["linux/amd64"]
+target "image-local" {
+  inherits = ["image"]
+  output   = ["type=docker"]
 }
 
-target "aarch64" {
-  inherits  = ["base"]
-  platforms = ["linux/arm64"]
-  args = {
-    YA_CORE_ARCH: "linux_aarch64"
-  }
-}
-
-group "default" {
-  targets = ["amd64", "aarch64"]
+target "image-all" {
+  inherits  = ["image"]
+  platforms = [
+    "linux/amd64",
+    "linux/arm64"
+  ]
 }
