@@ -27,6 +27,7 @@ target "image-all" {
   inherits  = ["image"]
   platforms = [
     "linux/amd64",
-    "linux/arm64"
+    // aarch64 not supported at the moment, see https://github.com/alexandre-abrioux/golem-node/issues/44#issuecomment-2211726849
+    // "linux/arm64"
   ]
 }
