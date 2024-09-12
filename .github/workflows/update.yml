@@ -24,3 +24,4 @@ jobs:
           branch: patch/yagna-${{ steps.update-versions.outputs.version }}
           reviewers:  ${{ github.repository_owner }}
           delete-branch: true
+          sign-commits: true
