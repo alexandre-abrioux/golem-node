@@ -51,7 +51,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           files: |
             ./docker-bake.hcl
-            ${{ steps.meta.outputs.bake-file }}
+            cwd://${{ steps.meta.outputs.bake-file }}
           targets: |
             image-all
           set: |
