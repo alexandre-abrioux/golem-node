@@ -19,9 +19,9 @@ ARG YA_CORE_VERSION=0.17.3
 ARG YA_CORE_ARCH
 ARG YA_WASI_VERSION=0.2.2
 ARG YA_WASI_ARCH=linux
-ARG YA_VM_VERSION=0.5.2
+ARG YA_VM_VERSION=0.4.2
 ARG YA_VM_ARCH=linux
-ARG YA_RESOURCES_VERSION=0.1.20
+ARG YA_RESOURCES_VERSION=null
 WORKDIR /root/golem-setup
 RUN YA_CORE_ARCH=${YA_CORE_ARCH:-$(if [ ${TARGETPLATFORM} = "linux/arm64" ]; then echo "linux_aarch64"; else echo "linux"; fi)} \
 && mkdir bin \
