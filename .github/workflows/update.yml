@@ -9,7 +9,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - id: update-versions
         uses: ./.github/actions/update-versions
       - if: steps.update-versions.outputs.changes != '0'
