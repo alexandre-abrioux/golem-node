@@ -1,4 +1,4 @@
-FROM ubuntu:24.10 AS base
+FROM ubuntu:25.04 AS base
 RUN apt-get update -q \
 && apt-get install -q -y --no-install-recommends \
     ca-certificates \
