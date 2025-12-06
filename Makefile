@@ -11,44 +11,44 @@ help:		## Display this help message
 
 .PHONY: pull
 pull: 			## Pull the latest image version
-	docker-compose pull
+	docker compose pull
 
 .PHONY: up
 up: 			## Start the node
-	docker-compose up -d --remove-orphans
+	docker compose up -d --remove-orphans
 
 .PHONY: stop
 stop: 			## Stop the node
-	docker-compose stop
+	docker compose stop
 
 .PHONY: destroy
 destroy: 		## Destroy the node (volumes are not removed)
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 
 .PHONY: restart
 restart: 		## Restart the node
-	docker-compose restart
+	docker compose restart
 
 .PHONY: shell
 shell: 			## Enter the container shell
-	docker-compose exec node bash
+	docker compose exec node bash
 
 .PHONY: logs
 logs: 			## Display the container logs
-	docker-compose logs -t --tail=10 -f node
+	docker compose logs -t --tail=10 -f node
 
 .PHONY: setup
 setup: 			## Setup the node
-	docker-compose run --rm node golemsp setup
+	docker compose run --rm node golemsp setup
 
 .PHONY: status
 status: 		## Get the running node status
-	docker-compose exec node golemsp status
+	docker compose exec node golemsp status
 
 .PHONY: settings
 settings: 		## Show the running node settings
-	docker-compose exec node golemsp settings show
+	docker compose exec node golemsp settings show
 
 .PHONY: clean
 clean:			## Remove cached files older than 7 days
-	docker-compose exec node find /root/.local/share/ya-provider/exe-unit/cache/ -mtime +7 -type f -exec rm {} +
+	docker compose exec node find /root/.local/share/ya-provider/exe-unit/cache/ -mtime +7 -type f -exec rm {} +

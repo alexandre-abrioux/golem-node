@@ -1,4 +1,4 @@
-#  Golem Provider Node :whale: Docker Image
+# Golem Provider Node :whale: Docker Image
 
 > Project won one of the four prizes allocated by the Golem Project on Gitcoin's [Hack New Golem](https://gitcoin.co/issue/golemfactory/hackathons/6/100024411) bounty!
 >
@@ -35,9 +35,11 @@ Use `make` or `make help` to list the available shortcuts.
 
 Create a `.env.local` file in order to add your ERC20 address as an environment variable
 (replace the following placeholder with your own **PUBLIC** address):
+
 ```bash
 echo "YA_ACCOUNT=0x18f199E8DAb38257ca84D4858FF6F73De1A697eA" >> .env.local
 ```
+
 This is important because it will be the address where your earned GLM will be sent.
 
 You can use for instance your Metamask or Ledger public address.
