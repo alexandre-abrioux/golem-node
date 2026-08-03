@@ -29,7 +29,7 @@ RUN YA_CORE_ARCH=${YA_CORE_ARCH:-$(if [ ${TARGETPLATFORM} = "linux/arm64" ]; the
     && mkdir plugins \
     && mkdir resources \
     && curl --proto "=https" --silent --show-error \
-    --location "https://golem-releases.cdn.golem.network/yagna/golem-${YA_CORE_ARCH}-v${YA_CORE_VERSION}.tar.gz" \
+    --location "https://golem-releases.cdn.golem.network/yagna/golem-provider-${YA_CORE_ARCH}-v${YA_CORE_VERSION}.tar.gz" \
     --output "downloads/golem-provider.tar.gz" \
     && curl --proto "=https" --silent --show-error \
     --location "https://github.com/golemfactory/ya-runtime-wasi/releases/download/v${YA_WASI_VERSION}/ya-runtime-wasi-${YA_WASI_ARCH}-v${YA_WASI_VERSION}.tar.gz" \
