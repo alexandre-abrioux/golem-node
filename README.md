@@ -1,5 +1,16 @@
 # Golem Provider Node :whale: Docker Image
 
+> [!WARNING]
+> **This repository is archived and no longer maintained.**
+>
+> Golem now provides an official Docker image for provider nodes, so this project is no longer necessary. Please use the official image instead:
+>
+> - [Official Docker Provider Documentation](https://docs.golem.network/docs/providers/provider-installation)
+> - [Official DockerHub Image](https://hub.docker.com/r/golemfactory/provider)
+> - [Official Dockerfile](https://github.com/golemfactory/ya-installer/blob/main/docker/provider/Dockerfile)
+>
+> For help, join the [Golem Discord](https://chat.golem.network/).
+
 > Project won one of the four prizes allocated by the Golem Project on Gitcoin's [Hack New Golem](https://gitcoin.co/issue/golemfactory/hackathons/6/100024411) bounty!
 >
 > Read more on the [Golem's Blog article](https://blog.golemproject.net/meet-the-winners-golem-gitcoin-hackathon-2020/).
